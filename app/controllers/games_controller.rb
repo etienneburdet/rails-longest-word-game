@@ -6,7 +6,6 @@ class GamesController < ApplicationController
     session[:score] = 0 unless session[:score]
     @letters = [];
     10.times { @letters << ('a'..'z').to_a[rand(0..25)]}
-    @grid = @letters.join
   end
 
   def score
