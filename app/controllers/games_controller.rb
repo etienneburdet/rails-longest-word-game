@@ -3,6 +3,7 @@ require 'open-uri'
 
 class GamesController < ApplicationController
   def new
+    session[:score] = 0 unless session[:score]
     @letters = [];
     10.times { @letters << ('a'..'z').to_a[rand(0..25)]}
     @grid = @letters.join
@@ -20,7 +21,9 @@ class GamesController < ApplicationController
              elsif !dictionnary_answer
                "Word doesn't exist"
              else
-               'Score'
+               score = answer_letters.length**2
+               session[:score] += score
+               "Your score is: #{score}. Total: #{session[:score]}"
              end
   end
 end
